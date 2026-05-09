@@ -56,20 +56,16 @@
         </div>
     </main>
 
-    <!-- Modal (חלונית מוצר מורחבת) -->
+    <!-- Modal (חלונית מוצר) -->
     <div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="relative bg-white w-full max-w-5xl rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[92vh]">
-            <!-- כפתור סגירה -->
             <button onclick="closeModal()" class="absolute top-6 right-6 z-50 bg-white/90 p-2.5 rounded-full shadow-lg hover:bg-white transition-all">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
             
-            <!-- אזור התמונות -->
             <div class="w-full md:w-1/2 bg-white flex flex-col items-center justify-center p-8 relative min-h-[400px] border-b md:border-b-0 md:border-l border-gray-100">
                 <img id="modal-img" src="" class="max-w-full max-h-[450px] object-contain">
-                
-                <!-- כפתורי דפדוף -->
                 <div class="absolute inset-y-0 left-4 right-4 flex items-center justify-between pointer-events-none">
                     <button onclick="toggleImg()" class="pointer-events-auto bg-white/90 p-3 rounded-full shadow-md hover:bg-emerald-50 transition-all">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
@@ -78,11 +74,9 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
                     </button>
                 </div>
-                
                 <div id="img-label" class="absolute top-8 left-8 bg-emerald-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">תצוגה רגילה</div>
             </div>
 
-            <!-- אזור תוכן -->
             <div class="w-full md:w-1/2 p-10 md:p-14 bg-[#fafafa] flex flex-col overflow-y-auto">
                 <div id="modal-cat" class="text-emerald-700 text-sm font-bold uppercase mb-3 tracking-widest"></div>
                 <h2 id="modal-title" class="text-4xl font-bold mb-6 text-gray-900 leading-tight"></h2>
@@ -94,11 +88,11 @@
                 
                 <p id="modal-desc" class="text-gray-600 text-lg mb-8 font-bold leading-relaxed"></p>
 
-                <!-- אזור תוספות -->
+                <!-- תוספות -->
                 <div class="mb-8 p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 shadow-sm">
                     <h3 class="text-lg font-bold text-emerald-800 mb-4 flex items-center gap-2">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                        תוספות:
+                        תוספות שניתן להוסיף:
                     </h3>
                     <ul class="space-y-3 text-sm font-bold text-gray-700">
                         <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
@@ -113,9 +107,13 @@
                             <span class="flex items-center gap-2">🎈 בלון יום הולדת</span>
                             <span class="text-emerald-700">20 ש"ח</span>
                         </li>
-                        <li class="flex justify-between items-center">
+                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
                             <span class="flex items-center gap-2">🎈 בלון יום הולדת הליום</span>
                             <span class="text-emerald-700">30 ש"ח</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="flex items-center gap-2">🧸 דובי 25 ס"מ</span>
+                            <span class="text-emerald-700">40 ש"ח</span>
                         </li>
                     </ul>
                 </div>
@@ -146,7 +144,7 @@
                 </div>
                 <h3 class="text-3xl font-bold">מתנות-Love</h3>
             </div>
-            <p class="text-gray-400 font-bold mb-10 leading-relaxed max-w-lg mx-auto italic">"עיצוב מארזי שי יוקרתיים וצמחים במים. המתנה שצומחת מהלב אל הבית."</p>
+            <p class="text-gray-400 font-bold mb-10 italic">"עיצוב מארזי שי יוקרתיים וצמחים במים. המתנה שצומחת מהלב אל הבית."</p>
             <div class="text-emerald-500 font-bold text-2xl tracking-widest">050-580-2380</div>
             <div class="mt-12 pt-12 border-t border-gray-900 text-gray-600 text-xs font-bold uppercase tracking-widest">© 2024 מתנות-Love. כל הזכויות שמורות.</div>
         </div>
@@ -160,8 +158,26 @@
                 cat: "מתנה ליולדת", 
                 price: 120, 
                 size: "גדול", 
-                desc: "עציץ פוטוס רענן וקל לגידול שמסמל חיים חדשים וצמיחה. גדל במים ללא אדמה. המתנה האידיאלית להולדת הבייבי, מגיעה בעיצוב נקי או ארוזה בצלופן חגיגי.", 
+                desc: "עציץ פוטוס רענן וקל לגידול שמסמל חיים חדשים וצמיחה. גדל במים ללא אדמה. המתנה האידיאלית להולדת הבייבי.", 
                 images: ["https://i.postimg.cc/Dw3ZH2Cq/1.jpg", "https://i.postimg.cc/rw2m38hg/1A.jpg"] 
+            },
+            { 
+                id: 5, 
+                name: "מארז מושלם ליולדת", 
+                cat: "מתנה ליולדת", 
+                price: 160, 
+                size: "מיוחד", 
+                desc: "המארז המפנק ביותר לרגל הולדת הבייבי. שילוב מנצח של צמח פוטוס רענן בעיצוב הידרופוני יוקרתי.", 
+                images: ["https://i.postimg.cc/MHC91s7p/5.jpg", "https://i.postimg.cc/NF3dRN6H/5A.jpg"] 
+            },
+            { 
+                id: 6, 
+                name: "מארז יולדת מהודר", 
+                cat: "מתנה ליולדת", 
+                price: 180, 
+                size: "מיוחד", 
+                desc: "מארז יוקרתי ומהודר המעניק תחושת חגיגיות ושמחה. השילוב המושלם בין יופי הטבע לעיצוב מוקפד.", 
+                images: ["https://i.postimg.cc/bN2mTjF1/6.jpg", "https://i.postimg.cc/rwXQZYvK/6A.jpg"] 
             },
             { 
                 id: 2, 
@@ -169,8 +185,8 @@
                 cat: "לבית חדש", 
                 price: 120, 
                 size: "גדול", 
-                desc: "עיצוב ייחודי המשלב שכבות של אבני טוף וחלוקי נחל. מתנה מושלמת המשרה אנרגיה של שפע ושגשוג בבית החדש.", 
-                images: ["https://i.postimg.cc/9QHMKWxJ/2.jpg", "https://i.postimg.cc/W1c3C295/2A.jpg"] 
+                desc: "עיצוב ייחודי המשלב שכבות של אבני טוף וחלוקי נחל. מתנה מושלמת המשרה אנרגיה של שפע בבית החדש.", 
+                images: ["https://i.postimg.cc/x19nDgm1/2.jpg", "https://i.postimg.cc/pLPRbkjy/2A.jpg"] 
             },
             { 
                 id: 3, 
@@ -178,7 +194,7 @@
                 cat: "עציצים למשרד", 
                 price: 80, 
                 size: "קטן", 
-                desc: "הפתרון המושלם לירוק בעיניים במשרד ללא הלכלוך של אדמה. כלי זכוכית מינימליסטי ויוקרתי שמתאים לכל שולחן עבודה.", 
+                desc: "הפתרון המושלם לירוק בעיניים במשרד ללא הלכלוך של אדמה. כלי זכוכית מינימליסטי ויוקרתי.", 
                 images: ["https://i.postimg.cc/y8CdtVfj/3.jpg", "https://i.postimg.cc/YCB9ZpXP/3A.jpg"] 
             },
             { 
@@ -187,13 +203,12 @@
                 cat: "מתנות לצוות", 
                 price: 150, 
                 size: "מיוחד", 
-                desc: "שילוב יוקרתי של עציץ הידרופוני ובקבוק יין איכותי. מתנה מרשימה ומושקעת להערכת עובדים, צוותים או מנהלים.", 
+                desc: "שילוב יוקרתי של עציץ הידרופוני ובקבוק יין איכותי. מתנה מרשימה ומושקעת להערכת עובדים.", 
                 images: ["https://i.postimg.cc/vZwBkQPj/4.jpg", "https://i.postimg.cc/wjYvZ6WZ/4A.jpg"] 
             }
         ];
 
-        let activeProduct = null;
-        let imgIdx = 0;
+        let activeProduct = null, imgIdx = 0;
 
         function render() {
             const grid = document.getElementById('product-grid');
@@ -201,16 +216,12 @@
                 <div class="product-card group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer" onclick="openModal(${p.id})">
                     <div class="aspect-square bg-gray-50 flex items-center justify-center p-6 relative">
                         <img src="${p.images[0]}" alt="${p.name}" class="max-w-full max-h-full object-contain transition-transform duration-700">
-                        <div class="absolute top-4 right-4 bg-white/80 p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
-                        </div>
                     </div>
                     <div class="p-8">
                         <div class="text-emerald-700 text-[10px] font-bold uppercase mb-2 tracking-widest">${p.cat}</div>
-                        <h3 class="font-bold text-xl mb-3 text-gray-900">${p.name}</h3>
+                        <h3 class="font-bold text-xl mb-3 text-gray-900 line-clamp-1">${p.name}</h3>
                         <div class="flex items-center justify-between">
                             <span class="text-2xl font-bold text-emerald-700">${p.price} ש"ח</span>
-                            <span class="text-[10px] font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded-lg">עציץ ${p.size}</span>
                         </div>
                     </div>
                 </div>
@@ -218,21 +229,14 @@
         }
 
         function openModal(id) {
-            activeProduct = products.find(p => p.id === id);
-            imgIdx = 0;
-            updateModalUI();
-            document.getElementById('modal').classList.remove('hidden');
-            document.body.classList.add('modal-active');
+            activeProduct = products.find(p => p.id === id); imgIdx = 0; updateModalUI();
+            document.getElementById('modal').classList.remove('hidden'); document.body.classList.add('modal-active');
         }
 
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-            document.body.classList.remove('modal-active');
-        }
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); document.body.classList.remove('modal-active'); }
 
         function updateModalUI() {
-            const imgElement = document.getElementById('modal-img');
-            imgElement.src = activeProduct.images[imgIdx];
+            document.getElementById('modal-img').src = activeProduct.images[imgIdx];
             document.getElementById('modal-title').innerText = activeProduct.name;
             document.getElementById('modal-cat').innerText = activeProduct.cat;
             document.getElementById('modal-price').innerText = activeProduct.price + ' ש"ח';
@@ -244,13 +248,8 @@
 
         function toggleImg() {
             imgIdx = imgIdx === 0 ? 1 : 0;
-            const imgElement = document.getElementById('modal-img');
-            imgElement.style.opacity = '0';
-            setTimeout(() => {
-                imgElement.src = activeProduct.images[imgIdx];
-                document.getElementById('img-label').innerText = imgIdx === 0 ? "תצוגה רגילה" : "ארוז בצלופן חגיגי";
-                imgElement.style.opacity = '1';
-            }, 200);
+            const img = document.getElementById('modal-img'); img.style.opacity = '0';
+            setTimeout(() => { img.src = activeProduct.images[imgIdx]; document.getElementById('img-label').innerText = imgIdx === 0 ? "תצוגה רגילה" : "ארוז בצלופן חגיגי"; img.style.opacity = '1'; }, 200);
         }
 
         window.onload = render;
