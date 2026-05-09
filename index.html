@@ -8,25 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
-        body { 
-            font-family: 'Assistant', 'Arial', sans-serif; 
-            scroll-behavior: smooth; 
-        }
-        .product-card:hover img { 
-            transform: scale(1.05); 
-        }
-        .modal-active { 
-            overflow: hidden; 
-        }
-        .hide-scrollbar::-webkit-scrollbar { 
-            display: none; 
-        }
-        #modal-img { 
-            transition: opacity 0.3s ease; 
-        }
-        .hero-gradient { 
-            background: linear-gradient(135deg, #f0fdf4 0%, #f8f9fa 100%); 
-        }
+        body { font-family: 'Assistant', 'Arial', sans-serif; scroll-behavior: smooth; }
+        .product-card:hover img { transform: scale(1.05); }
+        .modal-active { overflow: hidden; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        #modal-img { transition: opacity 0.3s ease; }
+        .hero-gradient { background: linear-gradient(135deg, #f0fdf4 0%, #f8f9fa 100%); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -46,9 +33,6 @@
                 <a href="#" class="hover:text-emerald-700 transition-colors">עמוד הבית</a>
                 <a href="#catalog" class="text-emerald-700 underline underline-offset-4">הקולקציה</a>
             </nav>
-            <div class="md:hidden">
-                <!-- כפתור תפריט נייד אם נדרש בעתיד -->
-            </div>
         </div>
     </header>
 
@@ -108,7 +92,33 @@
                     <span id="modal-size" class="text-sm font-bold text-gray-500 bg-white border border-gray-200 px-3 py-1.5 rounded-xl shadow-sm"></span>
                 </div>
                 
-                <p id="modal-desc" class="text-gray-600 text-lg mb-10 font-bold leading-relaxed"></p>
+                <p id="modal-desc" class="text-gray-600 text-lg mb-8 font-bold leading-relaxed"></p>
+
+                <!-- אזור תוספות -->
+                <div class="mb-8 p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-emerald-800 mb-4 flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        תוספות:
+                    </h3>
+                    <ul class="space-y-3 text-sm font-bold text-gray-700">
+                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
+                            <span class="flex items-center gap-2">🍷 בקבוק יין</span>
+                            <span class="text-emerald-700">70 ש"ח</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
+                            <span class="flex items-center gap-2">💝 קופסת שוקולד לב</span>
+                            <span class="text-emerald-700">25 ש"ח</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
+                            <span class="flex items-center gap-2">🎈 בלון יום הולדת</span>
+                            <span class="text-emerald-700">20 ש"ח</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="flex items-center gap-2">🎈 בלון יום הולדת הליום</span>
+                            <span class="text-emerald-700">30 ש"ח</span>
+                        </li>
+                    </ul>
+                </div>
                 
                 <a id="modal-whatsapp" href="" target="_blank" class="mt-auto bg-[#25D366] text-white py-5 rounded-[1.25rem] text-center font-bold text-xl shadow-xl flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-all transform hover:-translate-y-1">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -127,7 +137,7 @@
         </svg>
     </a>
 
-    <!-- Footer (תחתית דף) -->
+    <!-- Footer -->
     <footer class="bg-gray-950 text-white py-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
             <div class="flex items-center justify-center gap-3 mb-8">
@@ -143,7 +153,6 @@
     </footer>
 
     <script>
-        // --- נתוני המוצרים והתמונות (4 פריטים) ---
         const products = [
             { 
                 id: 1, 
@@ -151,7 +160,7 @@
                 cat: "מתנה ליולדת", 
                 price: 120, 
                 size: "גדול", 
-                desc: "עציץ פוטוס רענן וקל לגידול שמסמל חיים חדשים וצמיחה. גדל במים ללא צורך באדמה. המתנה האידיאלית להולדת הבייבי, מגיעה בעיצוב נקי או ארוזה בצלופן חגיגי.", 
+                desc: "עציץ פוטוס רענן וקל לגידול שמסמל חיים חדשים וצמיחה. גדל במים ללא אדמה. המתנה האידיאלית להולדת הבייבי, מגיעה בעיצוב נקי או ארוזה בצלופן חגיגי.", 
                 images: ["https://i.postimg.cc/Dw3ZH2Cq/1.jpg", "https://i.postimg.cc/rw2m38hg/1A.jpg"] 
             },
             { 
@@ -170,7 +179,7 @@
                 price: 80, 
                 size: "קטן", 
                 desc: "הפתרון המושלם לירוק בעיניים במשרד ללא הלכלוך של אדמה. כלי זכוכית מינימליסטי ויוקרתי שמתאים לכל שולחן עבודה.", 
-                images: ["https://i.postimg.cc/zVp8R1YH/3.jpg", "https://i.postimg.cc/YCB9ZpXP/3A.jpg"] 
+                images: ["https://i.postimg.cc/y8CdtVfj/3.jpg", "https://i.postimg.cc/YCB9ZpXP/3A.jpg"] 
             },
             { 
                 id: 4, 
@@ -186,7 +195,6 @@
         let activeProduct = null;
         let imgIdx = 0;
 
-        // בניית הקטלוג בדף
         function render() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = products.map(p => `
@@ -209,7 +217,6 @@
             `).join('');
         }
 
-        // ניהול החלונית (Modal)
         function openModal(id) {
             activeProduct = products.find(p => p.id === id);
             imgIdx = 0;
@@ -231,7 +238,7 @@
             document.getElementById('modal-price').innerText = activeProduct.price + ' ש"ח';
             document.getElementById('modal-size').innerText = 'עציץ ' + activeProduct.size;
             document.getElementById('modal-desc').innerText = activeProduct.desc;
-            document.getElementById('modal-whatsapp').href = `https://wa.me/972505802380?text=${encodeURIComponent('שלום, אני מעוניין בפרטים לגבי: ' + activeProduct.name)}`;
+            document.getElementById('modal-whatsapp').href = `https://wa.me/972505802380?text=${encodeURIComponent('שלום, אני מעוניין בפרטים לגבי: ' + activeProduct.name + ' (ואשמח לשמוע גם על התוספות)')}`;
             document.getElementById('img-label').innerText = imgIdx === 0 ? "תצוגה רגילה" : "ארוז בצלופן חגיגי";
         }
 
@@ -246,7 +253,6 @@
             }, 200);
         }
 
-        // הפעלת הרינדור בטעינה
         window.onload = render;
     </script>
 </body>
