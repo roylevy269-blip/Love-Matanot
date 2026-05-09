@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מתנות-Love | קטלוג עציצים הידרופוניים</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Arial', 'Assistant', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#f8f9fa] text-slate-900">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // רכיבי Lucide לשימוש ב-React
+        const Icon = ({ name, size = 24, className = "" }) => {
+            const LucideIcon = lucide[name.charAt(0).toUpperCase() + name.slice(1)];
+            return LucideIcon ? <LucideIcon size={size} className={className} /> : null;
+        };
+
+        const HeartPlantIcon = ({ size = 24 }) => (
+            <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+                <lucide.Heart size={size} className="absolute text-emerald-600" fill="currentColor" />
+                <lucide.Leaf size={size * 0.7} className="absolute text-white translate-x-[2px] -translate-y-[2px]" fill="currentColor" />
+            </div>
+        );
+
+        const MOCK_PRODUCTS = [
+            {
+                id: 1,
+                name: "מארז 'חיים חדשים' ליולדת",
+                category: "מתנה ליולדת",
+                shortDescription: "עציץ פוטוס עדין במארז חגיגי, מסמל צמיחה והתחלות חדשות.",
+                fullDescription: "המתנה המושלמת להולדת הבייבי. עציץ פוטוס רענן וקל לגידול שמסמל חיים חדשים וצמיחה. הצמח גדל בתוך המים ללא צורך באדמה. המארז מגיע בשתי תצורות: עיצוב נקי או ארוז בצלופן חגיגי.",
+                images: ["https://i.postimg.cc/Dw3ZH2Cq/1.jpg", "https://i.postimg.cc/rw2m38hg/1A.jpg"],
+                specifications: ["גובה כלי: 20 ס״מ", "טיפול: הוספת מים פעם בשבועיים", "השקיה: מילוי מים בלבד"],
+                tags: ["ליולדת", "צמיחה", "מתנה"],
+                price: 120,
+                size: "גדול"
+            },
+            {
+                id: 2,
+                name: "מארז 'ברכת הבית' הירוק",
+                category: "לבית חדש",
+                shortDescription: "עציץ פוטוס מרשים בשכבות טוף, סגולה לשפע והצלחה.",
+                fullDescription: "אין דרך טובה יותר לברך על כניסה לבית חדש מאשר עם צמח חי המשרה אנרגיה טובה. העיצוב משלב שכבות דקורטיביות של אבני טוף וחלוקי נחל. ניתן לראות בתמונות את המראה הטבעי מול המראה הארוז למתנה.",
+                images: ["https://i.postimg.cc/9QHMKWxJ/2.jpg", "https://i.postimg.cc/W1c3C295/2A.jpg"],
+                specifications: ["סגנון: מודרני אלגנטי", "תחזוקה: מינימלית", "סמליות: שפע ושגשוג"],
+                tags: ["בית חדש", "שפע", "עיצוב"],
+                price: 120,
+                size: "גדול"
+            },
+            {
+                id: 3,
+                name: "פוטוס שולחני דקורטיבי",
+                category: "עציצים למשרד",
+                shortDescription: "צמח ירוק ומרענן לשולחן העבודה, נקי מאדמה וקל לטיפול.",
+                fullDescription: "הפתרון המושלם לירוק בעיניים במשרד ללא הלכלוך של אדמה. כלי זכוכית מינימליסטי המדגיש את יופי השורשים והעלים. מגיע עם אופציה לאריזת צלופן מהודרת.",
+                images: ["https://i.postimg.cc/zVp8R1YH/3.jpg", "https://i.postimg.cc/YCB9ZpXP/3A.jpg"],
+                specifications: ["מידות: קומפקטי", "תאורה: מתאים לתאורת משרד", "מצע: הידרופוני"],
+                tags: ["משרד", "שולחן עבודה", "נקי"],
+                price: 80,
+                size: "קטן"
+            },
+            {
+                id: 4,
+                name: "מארז שי אישי לצוות + בקבוק יין",
+                category: "מתנות לצוות",
+                shortDescription: "מארז יוקרתי להערכת עובדים הכוללת עציץ מעוצב ובקבוק יין.",
+                fullDescription: "שילוב מנצח של טבע ופינוק. המארז כולל עציץ פוטוס הגדל במים בכלי זכוכית ובקבוק יין איכותי. מתנה מרשימה ומושקעת לוועדי עובדים או כמתנת הוקרה אישית.",
+                images: ["https://i.postimg.cc/vZwBkQPj/4.jpg", "https://i.postimg.cc/wjYvZ6WZ/4A.jpg"],
+                specifications: ["כולל: עציץ + בקבוק יין", "תחזוקה: קלה מאוד", "אריזה: מארז שי מהודר"],
+                tags: ["צוות", "הערכה", "יין"],
+                price: 150,
+                size: "מיוחד"
+            }
+        ];
+
+        const CATEGORIES = ["הכל", "מתנות לצוות", "מתנה ליולדת", "לבית חדש", "עציצים למשרד"];
+
+        const ProductModal = ({ product, onClose }) => {
+            const [currentIdx, setCurrentIdx] = useState(0);
+            const whatsappNumber = "972505802380";
+
+            if (!product) return null;
+
+            return (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"></div>
+                    <div className="relative bg-white w-full max-w-5xl max-h-[95vh] rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row transform transition-all" onClick={e => e.stopPropagation()}>
+                        <button onClick={onClose} className="absolute top-4 right-4 z-30 bg-white/90 p-2 rounded-full shadow hover:bg-white"><lucide.X size={20} /></button>
+                        
+                        <div className="w-full md:w-1/2 relative bg-white flex items-center justify-center min-h-[350px] border-b md:border-l border-slate-100 p-8">
+                            <img src={product.images[currentIdx]} alt={product.name} className="max-w-full max-h-full object-contain" />
+                            
+                            <button onClick={() => setCurrentIdx(prev => (prev === 0 ? 1 : 0))} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white"><lucide.ChevronLeft size={24} /></button>
+                            <button onClick={() => setCurrentIdx(prev => (prev === 0 ? 1 : 0))} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white"><lucide.ChevronRight size={24} /></button>
+                            
+                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                                {product.images.map((_, i) => (
+                                    <div key={i} className={`h-1.5 rounded-full transition-all ${i === currentIdx ? 'bg-emerald-700 w-6' : 'bg-slate-300 w-2'}`}></div>
+                                ))}
+                            </div>
+                            <div className="absolute top-6 left-6 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-bold shadow-sm">
+                                {currentIdx === 0 ? "תצוגה רגילה" : "ארוז בצלופן"}
+                            </div>
+                        </div>
+
+                        <div className="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto flex flex-col bg-[#fafafa]">
+                            <div className="text-emerald-700 text-xs font-bold uppercase mb-2 tracking-wide">{product.category}</div>
+                            <h2 className="text-3xl font-bold text-slate-900 mb-4">{product.name}</h2>
+                            <div className="flex items-end gap-3 mb-6">
+                                <span className="text-4xl font-bold text-emerald-700">{product.price} ש"ח</span>
+                                <span className="text-sm font-bold text-slate-500 bg-slate-200 px-2 py-1 rounded">עציץ {product.size}</span>
+                            </div>
+                            <p className="text-slate-600 leading-relaxed mb-8 font-bold">{product.fullDescription}</p>
+                            
+                            <div className="space-y-3 mb-10">
+                                {product.specifications.map((s, i) => (
+                                    <div key={i} className="flex items-center gap-2 text-slate-700 font-bold text-sm">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                                        <span>{s}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <a 
+                                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`שלום, אני מעוניין/ת בפרטים נוספים והזמנה של: ${product.name}`)}`}
+                                target="_blank"
+                                className="w-full flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-xl font-bold text-lg shadow-xl shadow-[#25D366]/20 transition-all"
+                            >
+                                <lucide.MessageCircle size={24} />
+                                לפרטים נוספים והזמנות פנו בוואטסאפ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [selected, setSelected] = useState(null);
+            const [activeCat, setActiveCat] = useState("הכל");
+            const [search, setSearch] = useState("");
+            const [isScrolled, setIsScrolled] = useState(false);
+            const whatsappNumber = "972505802380";
+
+            useEffect(() => {
+                const handle = () => setIsScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handle);
+                return () => window.removeEventListener('scroll', handle);
+            }, []);
+
+            const filtered = MOCK_PRODUCTS.filter(p => 
+                (activeCat === "הכל" || p.category === activeCat) &&
+                (p.name.includes(search) || p.shortDescription.includes(search))
+            );
+
+            return (
+                <div className="min-h-screen">
+                    <header className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-white/95 shadow-md py-3' : 'bg-transparent py-5'}`}>
+                        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+                            <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+                                <HeartPlantIcon size={32} />
+                                <span className="text-2xl font-bold">מתנות-<span className="text-emerald-700 font-normal">Love</span></span>
+                            </div>
+                            <nav className="hidden md:flex items-center gap-8 bg-white/80 backdrop-blur-md px-8 py-3 rounded-full border border-white/50 shadow-sm font-bold text-slate-600">
+                                <a href="#" className="hover:text-emerald-700">עמוד הבית</a>
+                                <a href="#catalog" className="text-emerald-700">הקולקציה</a>
+                                <a href="#contact" className="hover:text-emerald-700">צור קשר</a>
+                            </nav>
+                            <div className="w-10"></div>
+                        </div>
+                    </header>
+
+                    <section className="pt-48 pb-20 text-center px-6 bg-gradient-to-b from-emerald-50 to-white">
+                        <div className="max-w-4xl mx-auto">
+                            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 leading-tight">מתנות שצומחות <br /><span className="text-transparent bg-clip-text bg-gradient-to-l from-emerald-600 to-teal-800">מהלב.</span></h1>
+                            <p className="text-slate-600 text-xl font-bold max-w-2xl mx-auto">העציצים המיוחדים שלנו גדלים במים בכלי זכוכית יוקרתיים. יופי נקי, רענן ומודרני לכל אירוע.</p>
+                        </div>
+                    </section>
+
+                    <section id="catalog" className="pb-32 max-w-7xl mx-auto px-6">
+                        <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-16 bg-white shadow-xl rounded-3xl p-4 border border-slate-100">
+                            <div className="flex flex-wrap gap-2 justify-center hide-scrollbar">
+                                {CATEGORIES.map(c => (
+                                    <button key={c} onClick={() => setActiveCat(c)} className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${activeCat === c ? 'bg-emerald-700 text-white shadow-lg' : 'text-slate-500 hover:bg-slate-50'}`}>{c}</button>
+                                ))}
+                            </div>
+                            <div className="relative w-full lg:w-80">
+                                <input type="text" placeholder="חיפוש בקולקציה..." className="w-full bg-slate-50 border-none rounded-full py-3 px-6 pr-12 text-sm font-bold focus:ring-2 focus:ring-emerald-500" value={search} onChange={e => setSearch(e.target.value)} />
+                                <lucide.Search size={18} className="absolute top-1/2 right-4 -translate-y-1/2 text-emerald-700" />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {filtered.map(p => (
+                                <div key={p.id} className="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all cursor-pointer" onClick={() => setSelected(p)}>
+                                    <div className="aspect-square bg-slate-50 p-4 flex items-center justify-center relative">
+                                        <img src={p.images[0]} alt={p.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700" />
+                                        <div className="absolute top-3 right-3 bg-white/90 p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"><lucide.ZoomIn size={16} /></div>
+                                    </div>
+                                    <div className="p-6">
+                                        <div className="text-emerald-600 text-[10px] font-bold uppercase mb-1">{p.category}</div>
+                                        <h3 className="font-bold text-slate-900 text-lg mb-2 line-clamp-1">{p.name}</h3>
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <span className="font-bold text-emerald-700">{p.price} ש"ח</span>
+                                            <span className="text-[10px] font-bold text-slate-400 bg-slate-50 px-2 rounded">עציץ {p.size}</span>
+                                        </div>
+                                        <p className="text-slate-500 text-xs font-bold line-clamp-2 leading-relaxed">{p.shortDescription}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <footer id="contact" className="bg-slate-900 text-white py-20 px-6 text-center">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="flex items-center justify-center gap-3 mb-8">
+                                <HeartPlantIcon size={40} />
+                                <span className="text-3xl font-bold">מתנות-<span className="text-emerald-400">Love</span></span>
+                            </div>
+                            <p className="text-slate-400 font-bold mb-10 leading-relaxed max-w-lg mx-auto">עיצוב מארזי שי יוקרתיים וצמחים במים בהתאמה אישית. פתרון עיצובי נקי, מודרני ומרגש לכל אירוע.</p>
+                            <a href={`https://wa.me/${whatsappNumber}`} target="_blank" className="text-[#25D366] text-2xl font-bold hover:scale-110 transition-transform inline-flex items-center gap-3">
+                                <lucide.MessageCircle size={28} /> 050-580-2380
+                            </a>
+                            <div className="mt-16 pt-8 border-t border-slate-800 text-slate-500 text-xs font-bold">© {new Date().getFullYear()} מתנות-Love. כל הזכויות שמורות.</div>
+                        </div>
+                    </footer>
+
+                    <a
+                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('שלום, הגעתי דרך האתר ואשמח לפרטים נוספים והזמנות פנו בוואטסאפ.')}`}
+                        target="_blank"
+                        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:scale-105"
+                    >
+                        <span className="hidden sm:inline font-bold">לפרטים נוספים והזמנות פנו בוואטסאפ</span>
+                        <lucide.MessageCircle size={24} />
+                    </a>
+
+                    {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
