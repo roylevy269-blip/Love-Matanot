@@ -14,6 +14,8 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         #modal-img { transition: opacity 0.3s ease; }
         .hero-gradient { background: linear-gradient(135deg, #f0fdf4 0%, #f8f9fa 100%); }
+        /* סגנון לחלונית התמונה של התוספות */
+        #addon-lightbox { transition: opacity 0.3s ease; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -89,31 +91,56 @@
                 <p id="modal-desc" class="text-gray-600 text-lg mb-8 font-bold leading-relaxed"></p>
 
                 <!-- תוספות -->
-                <div class="mb-8 p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 shadow-sm">
+                <div class="mb-8 p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 shadow-sm relative">
                     <h3 class="text-lg font-bold text-emerald-800 mb-4 flex items-center gap-2">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
                         תוספות שניתן להוסיף:
                     </h3>
                     <ul class="space-y-3 text-sm font-bold text-gray-700">
-                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
-                            <span class="flex items-center gap-2">🍷 בקבוק יין</span>
-                            <span class="text-emerald-700">70 ש"ח</span>
+                        <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-3 rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://i.postimg.cc/jjV9YSB0/yyn.jpg')">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                </div>
+                                <span class="flex items-center gap-2 text-base">🍷 בקבוק יין</span>
+                            </div>
+                            <span class="text-emerald-700 font-extrabold text-base">70 ש"ח</span>
                         </li>
-                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
-                            <span class="flex items-center gap-2">💝 קופסת שוקולד לב</span>
-                            <span class="text-emerald-700">25 ש"ח</span>
+                        <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-3 rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://i.postimg.cc/zfmMYG4N/swqwld.jpg')">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                </div>
+                                <span class="flex items-center gap-2 text-base">💝 קופסת שוקולד לב</span>
+                            </div>
+                            <span class="text-emerald-700 font-extrabold text-base">25 ש"ח</span>
                         </li>
-                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
-                            <span class="flex items-center gap-2">🎈 בלון יום הולדת</span>
-                            <span class="text-emerald-700">20 ש"ח</span>
+                        <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-3 rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://www.happiness.co.il/media/catalog/product/cache/c03ce33b703f4dbb560edfd071511fcd/2/_/2_39489.jpg')">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                </div>
+                                <span class="flex items-center gap-2 text-base">🎈 בלון יום הולדת</span>
+                            </div>
+                            <span class="text-emerald-700 font-extrabold text-base">20 ש"ח</span>
                         </li>
-                        <li class="flex justify-between items-center pb-2 border-b border-emerald-100/50">
-                            <span class="flex items-center gap-2">🎈 בלון יום הולדת הליום</span>
-                            <span class="text-emerald-700">30 ש"ח</span>
+                        <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-3 rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://maziflowers.co.il/wp-content/uploads/2021/08/1fd0b_1SPLIT202108SPLIT16131343.png')">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                </div>
+                                <span class="flex items-center gap-2 text-base">🎈 בלון יום הולדת הליום</span>
+                            </div>
+                            <span class="text-emerald-700 font-extrabold text-base">30 ש"ח</span>
                         </li>
-                        <li class="flex justify-between items-center">
-                            <span class="flex items-center gap-2">🧸 דובי 25 ס"מ</span>
-                            <span class="text-emerald-700">40 ש"ח</span>
+                        <li class="flex justify-between items-center cursor-pointer hover:bg-white p-3 rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://i.postimg.cc/jjV9YSmp/dwby.jpg')">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                </div>
+                                <span class="flex items-center gap-2 text-base">🧸 דובי 25 ס"מ</span>
+                            </div>
+                            <span class="text-emerald-700 font-extrabold text-base">40 ש"ח</span>
                         </li>
                     </ul>
                 </div>
@@ -122,9 +149,26 @@
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-1.5 5.5Z"/>
                     </svg>
-                    להזמנה מהירה בוואטסאפ
+                    להזמנה מהירה בוואטסאפ ופרטים נוספים
                 </a>
             </div>
+        </div>
+    </div>
+
+    <!-- Lightbox לתמונות התוספות -->
+    <div id="addon-lightbox" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onclick="closeAddonLightbox()">
+        <button onclick="closeAddonLightbox()" class="absolute top-6 right-6 z-[70] bg-white/90 p-2.5 rounded-full shadow-lg hover:bg-white transition-all text-gray-800">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="bg-white p-4 rounded-2xl max-w-sm w-full max-h-[80vh] flex items-center justify-center relative" onclick="event.stopPropagation()">
+            <!-- Loader שמוצג עד שהתמונה נטענת -->
+            <div id="addon-loader" class="absolute inset-0 flex items-center justify-center bg-white/80 rounded-2xl">
+                <svg class="animate-spin h-8 w-8 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+            <img id="addon-img" src="" class="max-w-full max-h-[70vh] object-contain rounded-xl opacity-0 transition-opacity duration-300" onload="document.getElementById('addon-img').style.opacity = '1'; document.getElementById('addon-loader').classList.add('hidden');">
         </div>
     </div>
 
@@ -250,6 +294,25 @@
             imgIdx = imgIdx === 0 ? 1 : 0;
             const img = document.getElementById('modal-img'); img.style.opacity = '0';
             setTimeout(() => { img.src = activeProduct.images[imgIdx]; document.getElementById('img-label').innerText = imgIdx === 0 ? "תצוגה רגילה" : "ארוז בצלופן חגיגי"; img.style.opacity = '1'; }, 200);
+        }
+
+        // פונקציות עבור חלונית התוספות (Lightbox)
+        function openAddonLightbox(imgSrc) {
+            const lightbox = document.getElementById('addon-lightbox');
+            const img = document.getElementById('addon-img');
+            const loader = document.getElementById('addon-loader');
+            
+            // איפוס לפני פתיחה
+            img.style.opacity = '0';
+            loader.classList.remove('hidden');
+            img.src = imgSrc;
+            
+            lightbox.classList.remove('hidden');
+        }
+
+        function closeAddonLightbox() {
+            document.getElementById('addon-lightbox').classList.add('hidden');
+            document.getElementById('addon-img').src = ''; // ניקוי תמונה
         }
 
         window.onload = render;
