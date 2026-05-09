@@ -161,6 +161,11 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
         <div class="bg-white p-4 rounded-2xl max-w-sm w-full max-h-[80vh] flex items-center justify-center relative" onclick="event.stopPropagation()">
+            <!-- כפתור סגירה (איקס) על גבי התמונה -->
+            <button onclick="closeAddonLightbox()" class="absolute top-2 right-2 bg-white/90 text-gray-600 hover:text-gray-900 hover:bg-white p-1.5 rounded-full shadow-md transition-all z-[80]">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            
             <!-- Loader שמוצג עד שהתמונה נטענת -->
             <div id="addon-loader" class="absolute inset-0 flex items-center justify-center bg-white/80 rounded-2xl">
                 <svg class="animate-spin h-8 w-8 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
