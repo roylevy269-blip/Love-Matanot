@@ -14,13 +14,12 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         #modal-img { transition: opacity 0.3s ease; }
         .hero-gradient { background: linear-gradient(135deg, #f0fdf4 0%, #f8f9fa 100%); }
-        /* סגנון לחלונית התמונה של התוספות */
         #addon-lightbox { transition: opacity 0.3s ease; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
-    <!-- Header (כותרת) -->
+    <!-- Header -->
     <header class="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-md shadow-sm py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -29,7 +28,7 @@
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
                     </svg>
                 </div>
-                <span class="text-2xl font-bold tracking-tighter text-slate-800">מתנות-<span class="text-emerald-700">Love</span></span>
+                <span class="text-2xl font-bold tracking-tight text-slate-800">מתנות-<span class="text-emerald-700">Love</span></span>
             </div>
             <nav class="hidden md:flex gap-8 font-bold text-gray-600">
                 <a href="#" class="hover:text-emerald-700 transition-colors">עמוד הבית</a>
@@ -38,27 +37,27 @@
         </div>
     </header>
 
-    <!-- Hero Section (אזור פתיחה) -->
+    <!-- Hero -->
     <section class="pt-44 pb-24 px-6 text-center hero-gradient relative">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[800px] bg-emerald-100/30 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[800px] bg-emerald-100/30 rounded-full blur-[100px] -z-10"></div>
         <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">מתנות שצומחות <br><span class="text-emerald-600">מהלב.</span></h1>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto font-bold leading-relaxed">העציצים המיוחדים שלנו גדלים במים בכלי זכוכית יוקרתיים. יופי נקי, רענן ומודרני לכל אירוע - ללא צורך באדמה.</p>
     </section>
 
-    <!-- Catalog (קטלוג) -->
+    <!-- Catalog -->
     <main id="catalog" class="max-w-7xl mx-auto px-6 py-20">
         <div class="flex items-center gap-4 mb-12">
             <div class="h-px bg-emerald-200 flex-grow"></div>
-            <h2 class="text-2xl font-bold text-emerald-800">הקולקציה שלנו</h2>
+            <h2 class="text-2xl font-bold text-emerald-800">הקולקציה המלאה</h2>
             <div class="h-px bg-emerald-200 flex-grow"></div>
         </div>
         
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- מוצרים יוזרקו כאן -->
+            <!-- Products will be injected here -->
         </div>
     </main>
 
-    <!-- Modal (חלונית מוצר) -->
+    <!-- Modal -->
     <div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="relative bg-white w-full max-w-5xl rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[92vh]">
@@ -67,7 +66,7 @@
             </button>
             
             <div class="w-full md:w-1/2 bg-white flex flex-col items-center justify-center p-4 sm:p-8 relative min-h-[250px] sm:min-h-[400px] border-b md:border-b-0 md:border-l border-gray-100">
-                <img id="modal-img" src="" class="max-w-full max-h-[250px] sm:max-h-[450px] object-contain">
+                <img id="modal-img" src="" class="max-w-full max-h-[250px] sm:max-h-[450px] object-contain" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80'">
                 <div class="absolute inset-y-0 left-2 right-2 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none">
                     <button onclick="toggleImg()" class="pointer-events-auto bg-white/90 p-2 sm:p-3 rounded-full shadow-md hover:bg-emerald-50 transition-all">
                         <svg width="20" height="20" class="sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
@@ -79,7 +78,7 @@
                 <div id="img-label" class="absolute top-4 left-4 sm:top-8 sm:left-8 bg-emerald-600 text-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold shadow-lg">תצוגה רגילה</div>
             </div>
 
-            <div class="w-full md:w-1/2 p-6 sm:p-10 md:p-14 bg-[#fafafa] flex flex-col overflow-y-auto hide-scrollbar">
+            <div class="w-full md:w-1/2 p-6 sm:p-10 md:p-14 bg-[#fafafa] flex flex-col overflow-y-auto hide-scrollbar text-right">
                 <div id="modal-cat" class="text-emerald-700 text-xs sm:text-sm font-bold uppercase mb-2 sm:mb-3 tracking-widest"></div>
                 <h2 id="modal-title" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-gray-900 leading-tight"></h2>
                 
@@ -100,45 +99,45 @@
                         <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://i.postimg.cc/jjV9YSB0/yyn.jpg')">
                             <div class="flex items-center gap-2 sm:gap-3">
                                 <div class="bg-emerald-100 text-emerald-700 p-1 sm:p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                    <svg width="14" height="14" class="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                                 </div>
-                                <span class="flex items-center gap-2 text-sm sm:text-base text-gray-700">🍷 בקבוק יין</span>
+                                <span class="text-sm sm:text-base">🍷 בקבוק יין</span>
                             </div>
                             <span class="text-emerald-700 font-extrabold text-sm sm:text-base">70 ש"ח</span>
                         </li>
                         <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://i.postimg.cc/zfmMYG4N/swqwld.jpg')">
                             <div class="flex items-center gap-2 sm:gap-3">
                                 <div class="bg-emerald-100 text-emerald-700 p-1 sm:p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                    <svg width="14" height="14" class="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                                 </div>
-                                <span class="flex items-center gap-2 text-sm sm:text-base text-gray-700">💝 קופסת שוקולד לב</span>
+                                <span class="text-sm sm:text-base">💝 קופסת שוקולד לב</span>
                             </div>
                             <span class="text-emerald-700 font-extrabold text-sm sm:text-base">25 ש"ח</span>
                         </li>
                         <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://www.happiness.co.il/media/catalog/product/cache/c03ce33b703f4dbb560edfd071511fcd/2/_/2_39489.jpg')">
                             <div class="flex items-center gap-2 sm:gap-3">
                                 <div class="bg-emerald-100 text-emerald-700 p-1 sm:p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                    <svg width="14" height="14" class="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                                 </div>
-                                <span class="flex items-center gap-2 text-sm sm:text-base text-gray-700">🎈 בלון יום הולדת</span>
+                                <span class="text-sm sm:text-base">🎈 בלון יום הולדת</span>
                             </div>
                             <span class="text-emerald-700 font-extrabold text-sm sm:text-base">20 ש"ח</span>
                         </li>
                         <li class="flex justify-between items-center border-b border-emerald-100/50 cursor-pointer hover:bg-white p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://maziflowers.co.il/wp-content/uploads/2021/08/1fd0b_1SPLIT202108SPLIT16131343.png')">
                             <div class="flex items-center gap-2 sm:gap-3">
                                 <div class="bg-emerald-100 text-emerald-700 p-1 sm:p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                    <svg width="14" height="14" class="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                                 </div>
-                                <span class="flex items-center gap-2 text-sm sm:text-base text-gray-700">🎈 בלון יום הולדת הליום</span>
+                                <span class="text-sm sm:text-base">🎈 בלון יום הולדת הליום</span>
                             </div>
                             <span class="text-emerald-700 font-extrabold text-sm sm:text-base">30 ש"ח</span>
                         </li>
                         <li class="flex justify-between items-center cursor-pointer hover:bg-white p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm bg-emerald-50/30 group" onclick="openAddonLightbox('https://i.postimg.cc/jjV9YSmp/dwby.jpg')">
                             <div class="flex items-center gap-2 sm:gap-3">
                                 <div class="bg-emerald-100 text-emerald-700 p-1 sm:p-1.5 rounded-full group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                    <svg width="14" height="14" class="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                                 </div>
-                                <span class="flex items-center gap-2 text-sm sm:text-base text-gray-700">🧸 דובי 25 ס"מ</span>
+                                <span class="text-sm sm:text-base">🧸 דובי 25 ס"מ</span>
                             </div>
                             <span class="text-emerald-700 font-extrabold text-sm sm:text-base">40 ש"ח</span>
                         </li>
@@ -146,20 +145,15 @@
                 </div>
                 
                 <a id="modal-whatsapp" href="" target="_blank" class="mt-auto bg-[#25D366] text-white py-4 sm:py-5 rounded-xl sm:rounded-[1.25rem] text-center font-bold text-base sm:text-xl shadow-xl flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#128C7E] transition-all transform hover:-translate-y-1">
-                    <svg width="24" height="24" class="sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-1.5 5.5Z"/>
-                    </svg>
+                    <svg width="24" height="24" class="sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-1.5 5.5Z"/></svg>
                     להזמנה מהירה בוואטסאפ ופרטים נוספים
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Lightbox לתמונות התוספות -->
+    <!-- Lightbox -->
     <div id="addon-lightbox" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onclick="closeAddonLightbox()">
-        <button onclick="closeAddonLightbox()" class="absolute top-6 right-6 z-[70] bg-white/90 p-2.5 rounded-full shadow-lg hover:bg-white transition-all text-gray-800">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
         <div class="bg-white p-4 rounded-2xl max-w-sm w-full max-h-[80vh] flex items-center justify-center relative" onclick="event.stopPropagation()">
             <button onclick="closeAddonLightbox()" class="absolute top-2 right-2 bg-white/90 text-gray-600 hover:text-gray-900 hover:bg-white p-1.5 rounded-full shadow-md transition-all z-[80]">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -170,27 +164,20 @@
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
             </div>
-            <img id="addon-img" src="" class="max-w-full max-h-[70vh] object-contain rounded-xl opacity-0 transition-opacity duration-300" onload="document.getElementById('addon-img').style.opacity = '1'; document.getElementById('addon-loader').classList.add('hidden');">
+            <img id="addon-img" src="" class="max-w-full max-h-[70vh] object-contain rounded-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity = '1'; document.getElementById('addon-loader').classList.add('hidden');" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80'">
         </div>
     </div>
 
-    <!-- כפתור וואטסאפ צף -->
+    <!-- Fixed WhatsApp -->
     <a href="https://wa.me/972506486449?text=שלום, הגעתי דרך האתר ואשמח לפרטים נוספים והזמנה." target="_blank" class="fixed bottom-8 right-8 z-40 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-all hover:bg-[#128C7E]">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-1.5 5.5Z"/>
-        </svg>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-1.5 5.5Z"/></svg>
     </a>
 
     <!-- Footer -->
     <footer class="bg-gray-950 text-white py-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
-            <div class="flex items-center justify-center gap-3 mb-8">
-                <div class="bg-emerald-600 p-2 rounded-lg text-white">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/></svg>
-                </div>
-                <h3 class="text-3xl font-bold">מתנות-Love</h3>
-            </div>
-            <p class="text-gray-400 font-bold mb-10 italic">"עיצוב מארזי שי יוקרתיים וצמחים במים. המתנה שצומחת מהלב אל הבית."</p>
+            <h3 class="text-3xl font-bold mb-6">מתנות-Love</h3>
+            <p class="text-gray-400 font-bold mb-10 italic leading-relaxed">"עיצוב מארזי שי יוקרתיים וצמחים במים. המתנה שצומחת מהלב אל הבית."</p>
             <div class="text-emerald-500 font-bold text-2xl tracking-widest leading-loose">050-648-6449</div>
             <div class="mt-12 pt-12 border-t border-gray-900 text-gray-600 text-xs font-bold uppercase tracking-widest">© 2024 מתנות-Love. כל הזכויות שמורות.</div>
         </div>
@@ -198,87 +185,25 @@
 
     <script>
         const products = [
-            { 
-                id: 1, 
-                name: "מארז 'חיים חדשים' ליולדת", 
-                cat: "מתנה ליולדת", 
-                price: 120, 
-                size: "גדול", 
-                desc: "עציץ פוטוס רענן וקל לגידול שמסמל חיים חדשים וצמיחה. גדל במים ללא אדמה. המתנה האידיאלית להולדת הבייבי.", 
-                images: ["https://i.postimg.cc/Dw3ZH2Cq/1.jpg", "https://i.postimg.cc/rw2m38hg/1A.jpg"] 
-            },
-            { 
-                id: 5, 
-                name: "מארז מושלם ליולדת", 
-                cat: "מתנה ליולדת", 
-                price: 160, 
-                size: "מיוחד", 
-                desc: "המארז המפנק ביותר לרגל הולדת הבייבי. שילוב מנצח של צמח פוטוס רענן בעיצוב הידרופוני יוקרתי, המעניק רוגע ויופי לכל חדר.", 
-                images: ["https://i.postimg.cc/MHC91s7p/5.jpg", "https://i.postimg.cc/NF3dRN6H/5A.jpg"] 
-            },
-            { 
-                id: 6, 
-                name: "מארז יולדת מהודר", 
-                cat: "מתנה ליולדת", 
-                price: 180, 
-                size: "מיוחד", 
-                desc: "מארז יוקרתי ומהודר המעניק תחושת חגיגיות ושמחה. השילוב המושלם בין יופי הטבע לעיצוב מוקפד, מתנה בלתי נשכחת לכל אמא טרייה.", 
-                images: ["https://i.postimg.cc/bN2mTjF1/6.jpg", "https://i.postimg.cc/pLPRbkjy/2A.jpg"] 
-            },
-            { 
-                id: 7, 
-                name: "מארז 'התחלה מתוקה' ליולדת", 
-                cat: "מתנה ליולדת", 
-                price: 170, 
-                size: "מיוחד", 
-                desc: "מארז המשלב עדינות ויופי מרהיב. הצמח ההידרופוני מוסיף רוגע ושלווה לחדר החדש של הבייבי.", 
-                images: ["https://i.postimg.cc/jC033V9J/6.jpg", "https://i.postimg.cc/pVh2SD4M/6A.jpg"] 
-            },
-            { 
-                id: 2, 
-                name: "מארז 'ברכת הבית' הירוק", 
-                cat: "לבית חדש", 
-                price: 120, 
-                size: "גדול", 
-                desc: "עיצוב ייחודי המשלב שכבות של אבני טוף וחלוקי נחל. מתנה מושלמת המשרה אנרגיה של שפע בבית החדש.", 
-                images: ["https://i.postimg.cc/x19nDgm1/2.jpg", "https://i.postimg.cc/W1c3C295/2A.jpg"] 
-            },
-            { 
-                id: 9, 
-                name: "מארז 'פינה של שקט' לבית", 
-                cat: "לבית חדש", 
-                price: 130, 
-                size: "גדול", 
-                desc: "עציץ הידרופוני בעיצוב כפרי ומרגיע. הפריט שישלים את האווירה בבית ויוסיף נגיעה של טבע ירוק לכל פינה.", 
-                images: ["https://i.postimg.cc/CMBF2jXV/8.jpg", "https://i.postimg.cc/26Lp0V14/8A.jpg"] 
-            },
-            { 
-                id: 3, 
-                name: "פוטוס שולחני דקורטיבי", 
-                cat: "עציצים למשרד", 
-                price: 80, 
-                size: "קטן", 
-                desc: "הפתרון המושלם לירוק בעיניים במשרד ללא הלכלוך של אדמה. כלי זכוכית מינימליסטי ויוקרתי שמתאים לכל שולחן עבודה.", 
-                images: ["https://i.postimg.cc/y8CdtVfj/3.jpg", "https://i.postimg.cc/YCB9ZpXP/3A.jpg"] 
-            },
-            { 
-                id: 4, 
-                name: "מארז שי לצוות + בקבוק יין", 
-                cat: "מתנות לצוות", 
-                price: 150, 
-                size: "מיוחד", 
-                desc: "שילוב יוקרתי של עציץ הידרופוני ובקבוק יין איכותי. מתנה מרשימה ומושקעת להערכת עובדים, צוותים או מנהלים.", 
-                images: ["https://i.postimg.cc/vZwBkQPj/4.jpg", "https://i.postimg.cc/wjYvZ6WZ/4A.jpg"] 
-            },
-            { 
-                id: 8, 
-                name: "מארז 'הערכה בסטייל' לעובדים", 
-                cat: "מתנות לצוות", 
-                price: 120, 
-                size: "מיוחד", 
-                desc: "מתנה המבטאת הערכה עמוקה בשילוב ירוק ורענן. מתאים במיוחד כשי הוקרה לצוותים על עבודה קשה והישגים.", 
-                images: ["https://i.postimg.cc/dQkqf8Xz/7.jpg", "https://i.postimg.cc/sfQVLpqd/7A.jpg"] 
-            }
+            // יולדות
+            { id: 1, name: "מארז 'חיים חדשים' ליולדת", cat: "מתנה ליולדת", price: 110, size: "גדול", desc: "עציץ פוטוס רענן וקל לגידול שמסמל חיים חדשים וצמיחה. גדל במים ללא אדמה. המתנה האידיאלית להולדת הבייבי.", images: ["https://i.postimg.cc/Dw3ZH2Cq/1.jpg", "https://i.postimg.cc/rw2m38hg/1A.jpg"] },
+            { id: 5, name: "מארז מושלם ליולדת", cat: "מתנה ליולדת", price: 160, size: "מיוחד", desc: "המארז המפנק ביותר לרגל הולדת הבייבי. שילוב מנצח של צמח פוטוס רענן בעיצוב הידרופוני יוקרתי, המעניק רוגע ויופי לכל חדר.", images: ["https://i.postimg.cc/MHC91s7p/5.jpg", "https://i.postimg.cc/NF3dRN6H/5A.jpg"] },
+            { id: 6, name: "מארז יולדת מהודר", cat: "מתנה ליולדת", price: 180, size: "מיוחד", desc: "מארז יוקרתי ומהודר המעניק תחושת חגיגיות ושמחה. השילוב המושלם בין יופי הטבע לעיצוב מוקפד, מתנה בלתי נשכחת לכל אמא טרייה.", images: ["https://i.postimg.cc/bN2mTjF1/6.jpg", "https://i.postimg.cc/pLPRbkjy/2A.jpg"] },
+            { id: 7, name: "מארז 'התחלה מתוקה' ליולדת", cat: "מתנה ליולדת", price: 130, size: "מיוחד", desc: "מארז המשלב עדינות ויופי מרהיב. הצמח ההידרופוני מוסיף רוגע ושלווה לחדר החדש של הבייבי.", images: ["https://i.postimg.cc/jC033V9J/6.jpg", "https://i.postimg.cc/pVh2SD4M/6A.jpg"] },
+            { id: 14, name: "מארז 'נגיעה של קסם'", cat: "מתנה ליולדת", price: 80, size: "גדול", desc: "שילוב מנצח של צמח הידרופוני רענן בכלי זכוכית מעוצב, המעניק אווירה של יוקרה ורוגע לכל חלל.", images: ["https://i.postimg.cc/593RtHTh/Gemini-Generated-Image-6jejco6jejco6jej.png", "https://i.postimg.cc/wxVGBtnz/5f2e771c-acbb-43e5-863f-b1dd6f5815aa.jpg"] },
+            { id: 15, name: "מארז 'נגיעה ירוקה'", cat: "מתנה ליולדת", price: 80, size: "בינוני", desc: "עציץ פוטוס רענן בכלי זכוכית מעוגל, פריט דקורטיבי המשרה רוגע ויופי טבעי בכל חדר או משרד.", images: ["https://i.postimg.cc/BQqQ8wp7/c3aacc43-5cdc-4024-a977-5bda14cf5478.jpg", "https://i.postimg.cc/xT0TkF5B/d684fff1-0593-450e-8113-8fe9e6b3b6c9.jpg"] },
+            
+            // בית
+            { id: 2, name: "מארז 'ברכת הבית' הירוק", cat: "לבית חדש", price: 120, size: "גדול", desc: "עיצוב ייחודי המשלב שכבות של אבני טוף וחלוקי נחל. מתנה מושלמת המשרה אנרגיה של שפע בבית החדש.", images: ["https://i.postimg.cc/x19nDgm1/2.jpg", "https://i.postimg.cc/pLPRbkjy/2A.jpg"] },
+            { id: 9, name: "מארז 'פינה של שקט' לבית", cat: "לבית חדש", price: 120, size: "גדול", desc: "עציץ הידרופוני בעיצוב כפרי ומרגיע. הפריט שישלים את האווירה בבית.", images: ["https://i.postimg.cc/v8gQKWk8/9.jpg", "https://i.postimg.cc/Y2GpP1Zq/9A.jpg"] },
+            { id: 12, name: "מארז 'התחדשות כפרית' לבית", cat: "לבית חדש", price: 110, size: "גדול", desc: "שילוב הרמוני של טבע ועיצוב. עציץ הידרופוני מרהיב המיועד להעניק תחושת רעננות.", images: ["https://i.postimg.cc/1Rk9181V/12.jpg", "https://i.postimg.cc/ryB82D2W/12A.jpg"] },
+            
+            // משרד וצוות
+            { id: 3, name: "פוטוס שולחני דקורטיבי", cat: "עציצים למשרד", price: 80, size: "קטן", desc: "הפתרון המושלם לירוק בעיניים במשרד ללא הלכלוך של אדמה.", images: ["https://i.postimg.cc/y8CdtVfj/3.jpg", "https://i.postimg.cc/YCB9ZpXP/3A.jpg"] },
+            { id: 10, name: "מארז 'השראה ירוקה' למשרד", cat: "עציצים למשרד", price: 95, size: "בינוני", desc: "עציץ הידרופוני מעוצב המשדרג את סביבת העבודה ומעניק השראה.", images: ["https://i.postimg.cc/1Rn9dp2X/10.jpg", "https://i.postimg.cc/y6MVCDCd/10A.jpg"] },
+            { id: 4, name: "מארז שי לצוות + בקבוק יין", cat: "מתנות לצוות", price: 150, size: "מיוחד", desc: "שילוב יוקרתי של עציץ הידרופוני ובקבוק יין איכותי.", images: ["https://i.postimg.cc/vZwBkQPj/4.jpg", "https://i.postimg.cc/wjYvZ6WZ/4A.jpg"] },
+            { id: 8, name: "מארז 'הערכה בסטייל' לעובדים", cat: "מתנות לצוות", price: 90, size: "מיוחד", desc: "מתנה המבטאת הערכה עמוקה בשילוב ירוק ורענן.", images: ["https://i.postimg.cc/dQkqf8Xz/7.jpg", "https://i.postimg.cc/sfQVLpqd/7A.jpg"] },
+            { id: 11, name: "מארז 'הוקרה וצמיחה' לצוות", cat: "מתנות לצוות", price: 90, size: "מרשים", desc: "מתנה יוקרתית המשלבת יופי ומשמעות.", images: ["https://i.postimg.cc/d3qgJc6x/11.jpg", "https://i.postimg.cc/SQBybnb2/11a.jpg"] }
         ];
 
         let activeProduct = null, imgIdx = 0;
@@ -286,15 +211,15 @@
         function render() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = products.map(p => `
-                <div class="product-card group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer" onclick="openModal(${p.id})">
-                    <div class="aspect-square bg-gray-50 flex items-center justify-center p-6 relative text-gray-900">
-                        <img src="${p.images[0]}" alt="${p.name}" class="max-w-full max-h-full object-contain transition-transform duration-700">
+                <div class="product-card group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer text-right flex flex-col h-full" onclick="openModal(${p.id})">
+                    <div class="aspect-square bg-gray-50 flex items-center justify-center p-6 relative">
+                        <img src="${p.images[0]}" alt="${p.name}" class="max-w-full max-h-full object-contain transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80'">
                     </div>
-                    <div class="p-8">
+                    <div class="p-8 flex flex-col flex-grow text-gray-900">
                         <div class="text-emerald-700 text-[10px] font-bold uppercase mb-2 tracking-widest">${p.cat}</div>
-                        <h3 class="font-bold text-xl mb-3 text-gray-900">${p.name}</h3>
-                        <p class="text-gray-500 text-sm mb-4 font-bold leading-relaxed">${p.desc}</p>
-                        <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-xl mb-3">${p.name}</h3>
+                        <p class="text-gray-500 text-sm mb-4 font-bold leading-relaxed flex-grow">${p.desc}</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
                             <span class="text-2xl font-bold text-emerald-700">${p.price} ש"ח</span>
                         </div>
                     </div>
@@ -316,7 +241,7 @@
             document.getElementById('modal-price').innerText = activeProduct.price + ' ש"ח';
             document.getElementById('modal-size').innerText = 'עציץ ' + activeProduct.size;
             document.getElementById('modal-desc').innerText = activeProduct.desc;
-            document.getElementById('modal-whatsapp').href = `https://wa.me/972506486449?text=${encodeURIComponent('שלום, אני מעוניין בפרטים לגבי: ' + activeProduct.name + ' (ואשמח לשמוע גם על התוספות)')}`;
+            document.getElementById('modal-whatsapp').href = `https://wa.me/972506486449?text=${encodeURIComponent('שלום, אני מעוניין בפרטים לגבי: ' + activeProduct.name)}`;
             document.getElementById('img-label').innerText = imgIdx === 0 ? "תצוגה רגילה" : "ארוז בצלופן חגיגי";
         }
 
@@ -330,16 +255,11 @@
             const lightbox = document.getElementById('addon-lightbox');
             const img = document.getElementById('addon-img');
             const loader = document.getElementById('addon-loader');
-            img.style.opacity = '0';
-            loader.classList.remove('hidden');
-            img.src = imgSrc;
-            lightbox.classList.remove('hidden');
+            img.style.opacity = '0'; loader.classList.remove('hidden');
+            img.src = imgSrc; lightbox.classList.remove('hidden');
         }
 
-        function closeAddonLightbox() {
-            document.getElementById('addon-lightbox').classList.add('hidden');
-            document.getElementById('addon-img').src = '';
-        }
+        function closeAddonLightbox() { document.getElementById('addon-lightbox').classList.add('hidden'); }
 
         window.onload = render;
     </script>
