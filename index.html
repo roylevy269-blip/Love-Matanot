@@ -29,6 +29,12 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        
+        .filter-btn.active {
+            background-color: #059669;
+            color: white;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -66,16 +72,31 @@
         <p class="text-xl text-gray-600 max-w-2xl mx-auto font-bold leading-relaxed">העציצים המיוחדים שלנו גדלים במים בכלי זכוכית יוקרתיים. יופי נקי, רענן ומודרני לכל אירוע - ללא צורך באדמה.</p>
     </section>
 
-    <!-- Catalog -->
+    <!-- Catalog Section -->
     <main id="catalog" class="max-w-7xl mx-auto px-6 py-20">
+        
+        <!-- Categories Navigation -->
+        <div class="flex flex-wrap justify-center gap-3 mb-16">
+            <button onclick="setFilter('all')" id="btn-all" class="filter-btn active px-6 py-2.5 rounded-full bg-white border border-gray-200 text-gray-700 font-bold hover:border-emerald-500 transition-all">כל הפריטים</button>
+            <button onclick="setFilter('bundles')" id="btn-bundles" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-gray-200 text-gray-700 font-bold hover:border-emerald-500 transition-all">חבילות</button>
+            <button onclick="setFilter('moms')" id="btn-moms" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-gray-200 text-gray-700 font-bold hover:border-emerald-500 transition-all">ליולדת</button>
+            <button onclick="setFilter('home')" id="btn-home" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-gray-200 text-gray-700 font-bold hover:border-emerald-500 transition-all">לבית</button>
+            <button onclick="setFilter('office')" id="btn-office" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-gray-200 text-gray-700 font-bold hover:border-emerald-500 transition-all">למשרד</button>
+        </div>
+
         <div class="flex items-center gap-4 mb-12">
             <div class="h-px bg-emerald-200 flex-grow"></div>
-            <h2 class="text-2xl font-bold text-emerald-800">הקולקציה המלאה</h2>
+            <h2 id="catalog-title" class="text-2xl font-bold text-emerald-800">הקולקציה המלאה</h2>
             <div class="h-px bg-emerald-200 flex-grow"></div>
         </div>
         
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Products will be injected here -->
+        </div>
+        
+        <div id="empty-state" class="hidden text-center py-20">
+            <p class="text-gray-400 font-bold text-xl">לא נמצאו מוצרים בקטגוריה זו</p>
+            <button onclick="setFilter('all')" class="mt-4 text-emerald-600 underline font-bold">חזרה לכל הפריטים</button>
         </div>
     </main>
 
@@ -133,7 +154,6 @@
                                     <button onclick="openAddonLightbox('https://i.postimg.cc/jjV9YSB0/yyn.jpg')" class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full hover:bg-emerald-600 hover:text-white transition-colors shadow-sm" title="צפייה בתמונה">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                                     </button>
-                                    <!-- כפתור מינוס -->
                                     <button id="minus-addon-wine" onclick="removeAddonPrice(70, 'בקבוק יין', 'addon-wine')" class="hidden bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-600 hover:text-white transition-colors shadow-sm" title="הסר מהסך הכל">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
                                     </button>
@@ -297,35 +317,91 @@
             { id: 14, name: "מארז 'נגיעה של קסם'", cat: "מתנה ליולדת", price: 70, size: "גדול", desc: "שילוב מנצח של צמח הידרופוני רענן בכלי זכוכית מעוצב, המעניק אווירה של יוקרה ורוגע לכל חחל. (הצמח במיכלים הוא אנטוריום אדום)", images: ["https://i.postimg.cc/593RtHTh/Gemini-Generated-Image-6jejco6jejco6jej.png", "https://i.postimg.cc/wxVGBtnz/5f2e771c-acbb-43e5-863f-b1dd6f5815aa.jpg"] }
         ];
 
+        let currentFilter = 'all';
         let activeProduct = null, imgIdx = 0;
         let currentBasePrice = 0;
         let currentTotalPrice = 0;
         let selectedAddons = {}; 
         const addonIds = ['addon-wine', 'addon-choco', 'addon-balloon', 'addon-helium', 'addon-bear'];
 
+        function setFilter(filter) {
+            currentFilter = filter;
+            
+            // Update UI buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + filter).classList.add('active');
+            
+            // Update title
+            const titles = {
+                all: "הקולקציה המלאה",
+                bundles: "חבילות ומארזים",
+                moms: "מתנות ליולדת",
+                home: "עיצוב לבית",
+                office: "מתנות למשרד וצוות"
+            };
+            document.getElementById('catalog-title').innerText = titles[filter];
+            
+            render();
+        }
+
         function render() {
             const grid = document.getElementById('product-grid');
-            grid.innerHTML = products.map(p => `
-                <div class="product-card group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer text-right flex flex-col h-full" onclick="openModal(${p.id})">
-                    <div class="h-64 sm:h-72 bg-gray-50 flex items-center justify-center p-6 relative shrink-0 overflow-hidden">
-                        <img src="${p.images[0]}" alt="${p.name}" class="max-w-full max-h-full object-contain transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80'">
+            const emptyState = document.getElementById('empty-state');
+            
+            const filtered = products.filter(p => {
+                if (currentFilter === 'all') return true;
+                
+                if (currentFilter === 'bundles') {
+                    const bundleNames = ["מארז מושלם ליולדת", "מארז יולדת מהודר", "מארז שי לצוות + בקבוק יין", "מארז אלגנטיות ירוקה"];
+                    return bundleNames.includes(p.name);
+                }
+                
+                if (currentFilter === 'moms') {
+                    return p.cat === "מתנה ליולדת";
+                }
+                
+                if (currentFilter === 'home') {
+                    // לבית: קטגוריית בית + ניטרליים
+                    const neutrals = ["מארז 'קסם עגול'", "מארז 'נגיעה ירוקה'", "מארז 'נגיעה של קסם'", "מארז 'קווים נקיים'", "פפרומיה מגוונת", "מארז 'שילוב מנצח'"];
+                    return p.cat === "לבית חדש" || neutrals.includes(p.name);
+                }
+                
+                if (currentFilter === 'office') {
+                    // למשרד: קטגוריית משרד/צוות + ניטרליים
+                    const neutrals = ["מארז 'קווים נקיים'", "פפרומיה מגוונת", "מארז 'שילוב מנצח'", "מארז 'שפע ירוק'", "מארז 'צמיחה לגובה'", "מארז 'נגיעה ירוקה'"];
+                    return p.cat === "עציצים למשרד" || p.cat === "מתנות לצוות" || neutrals.includes(p.name);
+                }
+                
+                return false;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                grid.innerHTML = filtered.map(p => `
+                    <div class="product-card group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer text-right flex flex-col h-full" onclick="openModal(${p.id})">
+                        <div class="h-64 sm:h-72 bg-gray-50 flex items-center justify-center p-6 relative shrink-0 overflow-hidden">
+                            <img src="${p.images[0]}" alt="${p.name}" class="max-w-full max-h-full object-contain transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        
+                        <div class="p-8 flex flex-col flex-grow text-gray-900 bg-white">
+                            <div class="text-emerald-700 text-[10px] font-bold uppercase mb-2 tracking-widest h-4 overflow-hidden shrink-0">${p.cat}</div>
+                            <div class="h-[3.5rem] mb-3 overflow-hidden shrink-0">
+                                <h3 class="font-bold text-xl line-clamp-2 leading-tight">${p.name}</h3>
+                            </div>
+                            <div class="h-[4.5rem] mb-6 overflow-hidden shrink-0">
+                                <p class="text-gray-500 text-sm font-bold leading-relaxed line-clamp-3">${p.desc}</p>
+                            </div>
+                            <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between shrink-0">
+                                <span class="text-2xl font-bold text-emerald-700">${p.price} ש"ח</span>
+                                <div class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full text-[10px] font-bold">פרטים</div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="p-8 flex flex-col flex-grow text-gray-900 bg-white">
-                        <div class="text-emerald-700 text-[10px] font-bold uppercase mb-2 tracking-widest h-4 overflow-hidden shrink-0">${p.cat}</div>
-                        <div class="h-[3.5rem] mb-3 overflow-hidden shrink-0">
-                            <h3 class="font-bold text-xl line-clamp-2 leading-tight">${p.name}</h3>
-                        </div>
-                        <div class="h-[4.5rem] mb-6 overflow-hidden shrink-0">
-                            <p class="text-gray-500 text-sm font-bold leading-relaxed line-clamp-3">${p.desc}</p>
-                        </div>
-                        <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between shrink-0">
-                            <span class="text-2xl font-bold text-emerald-700">${p.price} ש"ח</span>
-                            <div class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full text-[10px] font-bold">פרטים</div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
         }
 
         function openModal(id) {
@@ -369,14 +445,12 @@
             currentTotalPrice += price;
             selectedAddons[name] = (selectedAddons[name] || 0) + 1;
             
-            // עדכון תגית כמות
             const badge = document.getElementById('badge-' + addonId);
             if (badge) {
                 badge.innerText = selectedAddons[name];
                 badge.classList.remove('hidden');
             }
             
-            // הצגת כפתור מינוס
             const minusBtn = document.getElementById('minus-' + addonId);
             if (minusBtn) {
                 minusBtn.classList.remove('hidden');
