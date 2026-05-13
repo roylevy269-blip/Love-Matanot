@@ -54,7 +54,15 @@
     <!-- Hero -->
     <section class="pt-44 pb-24 px-6 text-center hero-gradient relative">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[800px] bg-emerald-100/30 rounded-full blur-[100px] -z-10"></div>
-        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">מתנות שצומחות <br><span class="text-emerald-600">מהלב.</span></h1>
+        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            מתנות שצומחות <br>
+            <span class="text-emerald-600 inline-flex items-center gap-3">
+                מהלב
+                <svg class="w-10 h-10 md:w-16 md:h-16 drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </span>
+        </h1>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto font-bold leading-relaxed">העציצים המיוחדים שלנו גדלים במים בכלי זכוכית יוקרתיים. יופי נקי, רענן ומודרני לכל אירוע - ללא צורך באדמה.</p>
     </section>
 
@@ -125,6 +133,10 @@
                                     <button onclick="openAddonLightbox('https://i.postimg.cc/jjV9YSB0/yyn.jpg')" class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full hover:bg-emerald-600 hover:text-white transition-colors shadow-sm" title="צפייה בתמונה">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                                     </button>
+                                    <!-- כפתור מינוס -->
+                                    <button id="minus-addon-wine" onclick="removeAddonPrice(70, 'בקבוק יין', 'addon-wine')" class="hidden bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-600 hover:text-white transition-colors shadow-sm" title="הסר מהסך הכל">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    </button>
                                     <button onclick="addAddonPrice(70, 'בקבוק יין', 'addon-wine')" class="bg-blue-100 text-blue-600 p-1.5 rounded-full hover:bg-blue-600 hover:text-white transition-colors shadow-sm" title="הוסף לסך הכל">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                                     </button>
@@ -141,6 +153,9 @@
                                 <div class="flex items-center gap-1.5">
                                     <button onclick="openAddonLightbox('https://i.postimg.cc/zfmMYG4N/swqwld.jpg')" class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full hover:bg-emerald-600 hover:text-white transition-colors shadow-sm" title="צפייה בתמונה">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                    </button>
+                                    <button id="minus-addon-choco" onclick="removeAddonPrice(25, 'קופסת שוקולד לב', 'addon-choco')" class="hidden bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-600 hover:text-white transition-colors shadow-sm" title="הסר מהסך הכל">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
                                     </button>
                                     <button onclick="addAddonPrice(25, 'קופסת שוקולד לב', 'addon-choco')" class="bg-blue-100 text-blue-600 p-1.5 rounded-full hover:bg-blue-600 hover:text-white transition-colors shadow-sm" title="הוסף לסך הכל">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -159,6 +174,9 @@
                                     <button onclick="openAddonLightbox('https://www.happiness.co.il/media/catalog/product/cache/c03ce33b703f4dbb560edfd071511fcd/2/_/2_39489.jpg')" class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full hover:bg-emerald-600 hover:text-white transition-colors shadow-sm" title="צפייה בתמונה">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                                     </button>
+                                    <button id="minus-addon-balloon" onclick="removeAddonPrice(20, 'בלון יום הולדת', 'addon-balloon')" class="hidden bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-600 hover:text-white transition-colors shadow-sm" title="הסר מהסך הכל">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    </button>
                                     <button onclick="addAddonPrice(20, 'בלון יום הולדת', 'addon-balloon')" class="bg-blue-100 text-blue-600 p-1.5 rounded-full hover:bg-blue-600 hover:text-white transition-colors shadow-sm" title="הוסף לסך הכל">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                                     </button>
@@ -176,6 +194,9 @@
                                     <button onclick="openAddonLightbox('https://maziflowers.co.il/wp-content/uploads/2021/08/1fd0b_1SPLIT202108SPLIT16131343.png')" class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full hover:bg-emerald-600 hover:text-white transition-colors shadow-sm" title="צפייה בתמונה">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                                     </button>
+                                    <button id="minus-addon-helium" onclick="removeAddonPrice(30, 'בלון יום הולדת הליום', 'addon-helium')" class="hidden bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-600 hover:text-white transition-colors shadow-sm" title="הסר מהסך הכל">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    </button>
                                     <button onclick="addAddonPrice(30, 'בלון יום הולדת הליום', 'addon-helium')" class="bg-blue-100 text-blue-600 p-1.5 rounded-full hover:bg-blue-600 hover:text-white transition-colors shadow-sm" title="הוסף לסך הכל">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                                     </button>
@@ -192,6 +213,9 @@
                                 <div class="flex items-center gap-1.5">
                                     <button onclick="openAddonLightbox('https://i.postimg.cc/jjV9YSmp/dwby.jpg')" class="bg-emerald-100 text-emerald-700 p-1.5 rounded-full hover:bg-emerald-600 hover:text-white transition-colors shadow-sm" title="צפייה בתמונה">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                    </button>
+                                    <button id="minus-addon-bear" onclick="removeAddonPrice(40, 'דובי 25 סמ', 'addon-bear')" class="hidden bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-600 hover:text-white transition-colors shadow-sm" title="הסר מהסך הכל">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
                                     </button>
                                     <button onclick="addAddonPrice(40, 'דובי 25 סמ', 'addon-bear')" class="bg-blue-100 text-blue-600 p-1.5 rounded-full hover:bg-blue-600 hover:text-white transition-colors shadow-sm" title="הוסף לסך הכל">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -270,42 +294,31 @@
 
             // מארזים אחרונים בסוף הקטלוג
             { id: 17, name: "מארז 'אלגנטיות ירוקה'", cat: "מתנות לצוות", price: 160, size: "יוקרתי", desc: "מארז פרימיום המשלב צמח פוטוס רענן בכלי זכוכית מעוצב, המעניק מראה יוקרתי ומתוחכם לכל פינה בבית או במשרד.", images: ["https://i.postimg.cc/pTdWy9R6/pyt.jpg", "https://i.postimg.cc/V6HYtYk7/pyt1.jpg"] },
-            { id: 14, name: "מארז 'נגיעה של קסם'", cat: "מתנה ליולדת", price: 70, size: "גדול", desc: "שילוב מנצח של צמח הידרופוני רענן בכלי זכוכית מעוצב, המעניק אווירה של יוקרה ורוגע לכל חלל. (הצמח במיכלים הוא אנטוריום אדום)", images: ["https://i.postimg.cc/593RtHTh/Gemini-Generated-Image-6jejco6jejco6jej.png", "https://i.postimg.cc/wxVGBtnz/5f2e771c-acbb-43e5-863f-b1dd6f5815aa.jpg"] }
+            { id: 14, name: "מארז 'נגיעה של קסם'", cat: "מתנה ליולדת", price: 70, size: "גדול", desc: "שילוב מנצח של צמח הידרופוני רענן בכלי זכוכית מעוצב, המעניק אווירה של יוקרה ורוגע לכל חחל. (הצמח במיכלים הוא אנטוריום אדום)", images: ["https://i.postimg.cc/593RtHTh/Gemini-Generated-Image-6jejco6jejco6jej.png", "https://i.postimg.cc/wxVGBtnz/5f2e771c-acbb-43e5-863f-b1dd6f5815aa.jpg"] }
         ];
 
         let activeProduct = null, imgIdx = 0;
         let currentBasePrice = 0;
         let currentTotalPrice = 0;
-        
-        // עכשיו משתמשים באובייקט שישמור גם את השם וגם את הכמות
         let selectedAddons = {}; 
-        
         const addonIds = ['addon-wine', 'addon-choco', 'addon-balloon', 'addon-helium', 'addon-bear'];
 
         function render() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = products.map(p => `
                 <div class="product-card group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer text-right flex flex-col h-full" onclick="openModal(${p.id})">
-                    <!-- Image container with fixed height -->
                     <div class="h-64 sm:h-72 bg-gray-50 flex items-center justify-center p-6 relative shrink-0 overflow-hidden">
                         <img src="${p.images[0]}" alt="${p.name}" class="max-w-full max-h-full object-contain transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80'">
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow text-gray-900 bg-white">
-                        <!-- Category with fixed height -->
                         <div class="text-emerald-700 text-[10px] font-bold uppercase mb-2 tracking-widest h-4 overflow-hidden shrink-0">${p.cat}</div>
-                        
-                        <!-- Title with fixed height (fits 2 lines) -->
                         <div class="h-[3.5rem] mb-3 overflow-hidden shrink-0">
                             <h3 class="font-bold text-xl line-clamp-2 leading-tight">${p.name}</h3>
                         </div>
-                        
-                        <!-- Description with fixed height (fits 3 lines) -->
                         <div class="h-[4.5rem] mb-6 overflow-hidden shrink-0">
                             <p class="text-gray-500 text-sm font-bold leading-relaxed line-clamp-3">${p.desc}</p>
                         </div>
-                        
-                        <!-- Footer area pushed to bottom -->
                         <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between shrink-0">
                             <span class="text-2xl font-bold text-emerald-700">${p.price} ש"ח</span>
                             <div class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full text-[10px] font-bold">פרטים</div>
@@ -319,10 +332,7 @@
             activeProduct = products.find(p => p.id === id); 
             imgIdx = 0; 
             currentBasePrice = activeProduct.price;
-            
-            // איפוס מלא בכל פתיחה של מוצר
             resetPrice();
-            
             updateModalUI();
             document.getElementById('modal').classList.remove('hidden'); 
             document.body.classList.add('modal-active');
@@ -355,61 +365,73 @@
 
         function closeAddonLightbox() { document.getElementById('addon-lightbox').classList.add('hidden'); }
 
-        // הפונקציה החדשה לניהול תוספות עם כמות
         function addAddonPrice(price, name, addonId) {
             currentTotalPrice += price;
-            
-            // הוספת 1 לכמות של התוספת הנוכחית (או יצירה אם לא קיימת)
             selectedAddons[name] = (selectedAddons[name] || 0) + 1;
             
-            // עדכון התג (Badge) שמציג את הכמות למשתמש
+            // עדכון תגית כמות
             const badge = document.getElementById('badge-' + addonId);
             if (badge) {
                 badge.innerText = selectedAddons[name];
                 badge.classList.remove('hidden');
             }
             
+            // הצגת כפתור מינוס
+            const minusBtn = document.getElementById('minus-' + addonId);
+            if (minusBtn) {
+                minusBtn.classList.remove('hidden');
+            }
+            
             updatePriceDisplay();
         }
 
-        // פונקציית האיפוס
+        function removeAddonPrice(price, name, addonId) {
+            if (!selectedAddons[name] || selectedAddons[name] <= 0) return;
+            
+            currentTotalPrice -= price;
+            selectedAddons[name]--;
+            
+            const badge = document.getElementById('badge-' + addonId);
+            const minusBtn = document.getElementById('minus-' + addonId);
+            
+            if (selectedAddons[name] > 0) {
+                if (badge) badge.innerText = selectedAddons[name];
+            } else {
+                if (badge) badge.classList.add('hidden');
+                if (minusBtn) minusBtn.classList.add('hidden');
+                delete selectedAddons[name];
+            }
+            
+            updatePriceDisplay();
+        }
+
         function resetPrice() {
             currentTotalPrice = currentBasePrice;
             selectedAddons = {};
-            
-            // הסתרת כל תגי הכמויות
             addonIds.forEach(id => {
                 const badge = document.getElementById('badge-' + id);
+                const minusBtn = document.getElementById('minus-' + id);
                 if (badge) badge.classList.add('hidden');
+                if (minusBtn) minusBtn.classList.add('hidden');
             });
-            
             updatePriceDisplay();
         }
 
         function updatePriceDisplay() {
-            // עדכון המחיר המוצג
             document.getElementById('modal-price').innerText = currentTotalPrice + ' ש"ח';
-            
-            // הצגה/הסתרה של כפתור איפוס תוספות
             const resetBtn = document.getElementById('reset-price-btn');
             if (currentTotalPrice > currentBasePrice) {
                 resetBtn.classList.remove('hidden');
             } else {
                 resetBtn.classList.add('hidden');
             }
-            
-            // עדכון הקישור לוואטסאפ בהתאם למוצר, לתוספות ולכמויות
             let waText = `שלום, הגעתי דרך האתר ואשמח לפרטים לגבי: ${activeProduct.name} במחיר ${currentBasePrice} ש"ח`;
-            
-            // יצירת מחרוזת של התוספות (לדוגמה: "בקבוק יין (2), בלון יום הולדת (1)")
             const addonsList = Object.entries(selectedAddons)
                 .map(([name, qty]) => `${name} (${qty})`)
                 .join(', ');
-                
             if (addonsList.length > 0) {
                 waText += ` + תוספות: ${addonsList}. סה"כ לתשלום: ${currentTotalPrice} ש"ח`;
             }
-            
             document.getElementById('modal-whatsapp').href = `https://wa.me/972506486449?text=${encodeURIComponent(waText)}`;
         }
 
